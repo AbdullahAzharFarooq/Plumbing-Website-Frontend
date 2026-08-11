@@ -53,13 +53,13 @@ function ContactPage() {
         <div className="shell py-12 lg:py-14">
           <div className="max-w-2xl">
             <p className="eyebrow">GET IN TOUCH</p>
-            <h1 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl leading-tight">
               Reliable Plumbing Starts With a Conversation.
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Whether you have an urgent plumbing problem, need a repair, or simply want professional advice, our team is ready to help.
+              Whether you need an urgent repair, routine service, or simply have a question, our team is ready to help.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}
@@ -73,52 +73,98 @@ function ContactPage() {
       </section>
 
       <section className="bg-background">
-        <div className="shell py-16">
+        <div className="shell py-12 lg:py-14">
           <div className="mx-auto max-w-4xl rounded-[2rem] border border-border bg-white p-8 shadow-soft sm:p-10">
-            <h2 className="text-base font-semibold uppercase tracking-[0.24em] text-teal">
-              Contact details
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Reach our team directly or send a quick request with the details below.
-            </p>
-            <dl className="mt-8 grid gap-7 sm:grid-cols-2">
-              {contactDetails.map((item) => (
-                <div key={item.label}>
-                  <dt className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                    {item.label}
+            <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal">
+                  Contact information
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                  Reach Northbridge Plumbing directly with a phone call, email, or service request.
+                </p>
+              </div>
+
+              <dl className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-[1.5rem] border border-border bg-surface px-5 py-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    Phone
                   </dt>
-                  <dd className="mt-3 text-lg font-semibold text-navy">
-                    {item.href ? (
-                      <a href={item.href} className="transition hover:text-primary">
-                        {item.value}
-                      </a>
-                    ) : (
-                      item.value
-                    )}
+                  <dd className="mt-2 text-base font-semibold text-navy">
+                    <a href={business.phoneHref} className="transition hover:text-primary">
+                      {business.phone}
+                    </a>
                   </dd>
                 </div>
-              ))}
-            </dl>
+                <div className="rounded-[1.5rem] border border-border bg-surface px-5 py-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    Email
+                  </dt>
+                  <dd className="mt-2 text-base font-semibold text-navy">
+                    <a href={`mailto:${contactEmail}`} className="transition hover:text-primary">
+                      {contactEmail}
+                    </a>
+                  </dd>
+                </div>
+                <div className="rounded-[1.5rem] border border-border bg-surface px-5 py-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    Service Area
+                  </dt>
+                  <dd className="mt-2 text-base font-semibold text-navy">Greater Toronto Area</dd>
+                </div>
+                <div className="rounded-[1.5rem] border border-border bg-surface px-5 py-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    Hours
+                  </dt>
+                  <dd className="mt-2 space-y-1 text-sm leading-relaxed text-navy">
+                    {business.businessHours.map((entry) => (
+                      <p key={entry.days}>
+                        <span className="font-semibold">{entry.days}:</span> {entry.hours}
+                      </p>
+                    ))}
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="bg-surface">
         <div className="shell py-16">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-20">
-            <div className="max-w-xl">
-              <p className="eyebrow">Tell Us What’s Going On</p>
+          <div className="mx-auto grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-14 max-w-6xl">
+            <div className="rounded-[2rem] border border-border bg-white p-8 shadow-soft sm:p-10">
+              <p className="eyebrow">Let's connect</p>
               <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
-                Give us a few details and our team will get back to you with the right next step.
+                Start your request and we’ll follow up with the right next step.
               </h2>
-              <p className="mt-6 max-w-lg text-[1.0625rem] leading-relaxed text-muted-foreground">
-                Licensed professionals • Clear communication • Reliable service.
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Use the form to tell us about your plumbing issue, then choose the best way for us to reach you.
               </p>
+
+              <div className="mt-8 space-y-4 text-sm text-muted-foreground">
+                <div>
+                  <p className="font-semibold text-navy">Email</p>
+                  <p>{contactEmail}</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-navy">Service Area</p>
+                  <p>Greater Toronto Area</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-navy">Hours</p>
+                  <div className="space-y-1">
+                    {business.businessHours.map((entry) => (
+                      <p key={entry.days}>{entry.days}: {entry.hours}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div
               id="contact-form"
-              className="rounded-[2rem] border border-border bg-white p-8 shadow-soft md:p-10"
+              className="rounded-[2rem] border border-border bg-white p-8 shadow-soft sm:p-10"
             >
               <ContactForm />
             </div>
@@ -126,76 +172,49 @@ function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-navy text-navy-foreground">
-        <div className="shell py-16">
-          <div className="rounded-[2rem] border border-teal/20 bg-navy/95 p-8 sm:p-10">
-            <p className="eyebrow text-teal">Have a Plumbing Emergency?</p>
-            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy-foreground">
-              Burst pipe, major leak, overflowing fixture, or another urgent problem?
-            </h2>
-            <p className="mt-4 max-w-2xl text-[1.0625rem] leading-relaxed text-navy-foreground/70">
-              Don't wait for the damage to get worse. Call now and our team will prioritise your home.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+      <section className="bg-background">
+        <div className="shell py-12 lg:py-14">
+          <div className="rounded-[2rem] border border-border bg-navy/95 p-8 shadow-soft sm:p-10 text-navy-foreground">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="eyebrow text-teal">Have a Plumbing Emergency?</p>
+                <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl leading-tight">
+                  Call our team directly for urgent plumbing assistance.
+                </h2>
+              </div>
               <a href={business.phoneHref} className={btnPrimary}>
-                <Phone className="size-4" aria-hidden="true" />
                 Call Now
               </a>
-              <a href="#contact-form" className={btnGhostLight}>
-                Request a Callback
-              </a>
             </div>
-            <p className="mt-4 text-sm text-navy-foreground/60">
-              Priority response for urgent plumbing calls.
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface">
+        <div className="shell py-12 lg:py-14">
+          <div className="mx-auto max-w-5xl rounded-[2rem] border border-border bg-white p-8 shadow-soft sm:p-10">
+            <p className="eyebrow text-teal">Service Area</p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Toronto • North York • Scarborough • Etobicoke • Mississauga • Vaughan • Markham • Richmond Hill
             </p>
           </div>
         </div>
       </section>
 
       <section className="bg-background">
-        <div className="shell py-16">
-          <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start lg:gap-20">
-            <div className="max-w-xl">
-              <p className="eyebrow text-teal">Serving Homes Across the Greater Toronto Area</p>
-              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
-                Residential plumbing coverage across the GTA.
-              </h2>
-              <p className="mt-4 max-w-lg text-[1.0625rem] leading-relaxed text-muted-foreground">
-                Local service from our experienced team, with the same premium care and attention in every neighbourhood.
-              </p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {serviceAreas.map((area) => (
-                <div key={area} className="rounded-full border border-border bg-surface px-4 py-3 text-sm font-medium text-navy">
-                  {area}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-navy text-navy-foreground">
-        <div className="shell py-16">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-20">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl font-extrabold sm:text-4xl text-navy-foreground">
+        <div className="shell py-12 lg:py-14">
+          <div className="rounded-[2rem] border border-border bg-white p-8 shadow-soft sm:p-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h2 className="text-3xl font-extrabold sm:text-4xl text-navy">
                 Need a Plumber? We're Ready to Help.
               </h2>
-              <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-navy-foreground/70">
+              <p className="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground">
                 Professional service, straightforward communication, and quality work from a local team you can trust.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <a href={business.phoneHref} className={btnPrimary}>
-                <Phone className="size-4" aria-hidden="true" />
-                Call {business.phone}
-              </a>
-              <a href="#contact-form" className={btnGhostLight}>
-                Request a Callback
-              </a>
-            </div>
+            <a href={business.phoneHref} className={btnPrimary}>
+              Call {business.phone}
+            </a>
           </div>
         </div>
       </section>

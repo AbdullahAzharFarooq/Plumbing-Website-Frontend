@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Home, Phone, ShieldCheck, Star, Users } from "lucide-react";
 
-import heroImage from "@/assets/hero-plumber.jpg";
+import heroImage from "@/assets/svc-faucet.jpg";
 import { Stars } from "@/components/Stars";
 import { business, testimonials } from "@/data/businessData";
 import { btnOutline, btnPrimary } from "@/lib/ui";
@@ -46,17 +46,17 @@ function ReviewsPage() {
   return (
     <>
       <section className="bg-background">
-        <div className="shell grid gap-8 py-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:py-14">
-          <div className="max-w-xl">
+        <div className="shell grid gap-6 py-10 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-12">
+          <div className="max-w-lg">
             <p className="eyebrow">Customer Feedback</p>
-            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl leading-tight">
+            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl leading-tight">
               Trusted by Homeowners Across the GTA.
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
               Two decades of local plumbing work, judged by the people who live with the results.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-border bg-white/90 px-4 py-2 shadow-soft backdrop-blur-sm">
+            <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-border bg-white/90 px-4 py-2 shadow-soft backdrop-blur-sm">
               <Stars rating={4.9} />
               <div>
                 <p className="text-lg font-semibold text-navy">4.9 / 5</p>
@@ -64,7 +64,7 @@ function ReviewsPage() {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}
@@ -75,7 +75,7 @@ function ReviewsPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-soft h-[260px] sm:h-[320px] lg:h-[420px]">
+          <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-soft h-[220px] sm:h-[260px] lg:h-[320px]">
             <img
               src={heroImage}
               alt="Professional plumber in a warm residential setting"
