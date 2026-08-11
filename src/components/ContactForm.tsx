@@ -4,11 +4,36 @@ import { useState } from "react";
 import { submitContactForm } from "@/services/contactService";
 import { btnPrimary } from "@/lib/ui";
 
-type Fields = { name: string; email: string; phone: string; service: string; message: string };
+type Fields = {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  preferredContact: string;
+  message: string;
+};
 type Errors = Partial<Record<keyof Fields, string>>;
 type Status = "idle" | "submitting" | "success" | "error";
 
-const emptyFields: Fields = { name: "", email: "", phone: "", service: "", message: "" };
+const serviceOptions = [
+  "Emergency plumbing",
+  "Leak repair",
+  "Drain cleaning",
+  "Water heater",
+  "Toilet or fixture",
+  "Other",
+];
+
+const contactMethods = ["Phone", "Email", "Either"];
+
+const emptyFields: Fields = {
+  name: "",
+  email: "",
+  phone: "",
+  service: "",
+  preferredContact: "Phone",
+  message: "",
+};
 
 function validate(fields: Fields): Errors {
   const errors: Errors = {};
@@ -27,7 +52,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
 
-  const update = (key: keyof Fields) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const update = (key: keyof Fields) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFields((prev) => ({ ...prev, [key]: event.target.value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
     if (status === "error") setStatus("idle");
@@ -57,17 +82,20 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="mt-6 rounded-xl border border-teal/25 bg-teal/5 p-6" role="status">
-        <CheckCircle2 className="size-6 text-teal" aria-hidden="true" />
-        <p className="mt-3 font-semibold text-navy">
-          Thank you! Your message has been sent successfully. We'll get back to you shortly.
+      <div className="mt-6 rounded-3xl border border-teal/25 bg-teal/5 p-6" role="status">
+        <div className="flex items-center gap-3 text-teal">
+          <CheckCircle2 className="size-6" aria-hidden="true" />
+          <span className="text-base font-semibold">Message sent</span>
+        </div>
+        <p className="mt-4 text-sm leading-relaxed text-navy">
+          Thank you! Your request is on its way. We'll reach out shortly with the next step.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-4 text-sm font-semibold text-primary hover:text-navy"
+          className="mt-6 text-sm font-semibold text-primary hover:text-navy"
         >
-          Send another message
+          Send another request
         </button>
       </div>
     );
@@ -76,7 +104,7 @@ export function ContactForm() {
   const isSubmitting = status === "submitting";
 
   return (
-    <form onSubmit={onSubmit} noValidate className="mt-6 space-y-5">
+    <form onSubmit={onSubmit} noValidate className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="cf-name" className="text-sm font-semibold text-navy">
@@ -127,47 +155,74 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div>
-        <label htmlFor="cf-email" className="text-sm font-semibold text-navy">
-          Email
-        </label>
-        <input
-          id="cf-email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          value={fields.email}
-          onChange={update("email")}
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? "cf-email-error" : undefined}
-          className={fieldClass}
-          placeholder="jane@example.com"
-          required
-        />
-        {errors.email && (
-          <p id="cf-email-error" className="mt-1.5 text-xs font-medium text-destructive">
-            {errors.email}
-          </p>
-        )}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="cf-email" className="text-sm font-semibold text-navy">
+            Email Address
+          </label>
+          <input
+            id="cf-email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            value={fields.email}
+            onChange={update("email")}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "cf-email-error" : undefined}
+            className={fieldClass}
+            placeholder="jane@example.com"
+            required
+          />
+          {errors.email && (
+            <p id="cf-email-error" className="mt-1.5 text-xs font-medium text-destructive">
+              {errors.email}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="cf-service" className="text-sm font-semibold text-navy">
+            Service needed
+          </label>
+          <select
+            id="cf-service"
+            name="service"
+            value={fields.service}
+            onChange={update("service")}
+            className={fieldClass}
+          >
+            <option value="">Choose a service</option>
+            {serviceOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>
-        <label htmlFor="cf-service" className="text-sm font-semibold text-navy">
-          Service needed
+        <label htmlFor="cf-contact-method" className="text-sm font-semibold text-navy">
+          Preferred contact method
         </label>
-        <input
-          id="cf-service"
-          name="service"
-          value={fields.service}
-          onChange={update("service")}
+        <select
+          id="cf-contact-method"
+          name="preferredContact"
+          value={fields.preferredContact}
+          onChange={update("preferredContact")}
           className={fieldClass}
-          placeholder="Leak repair, water heater, faucet replacement..."
-        />
+        >
+          {contactMethods.map((method) => (
+            <option key={method} value={method}>
+              {method}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div>
         <label htmlFor="cf-message" className="text-sm font-semibold text-navy">
-          Message
+          Briefly describe the issue
         </label>
         <textarea
           id="cf-message"
@@ -189,7 +244,7 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p className="flex items-start gap-2 rounded-lg border border-destructive/25 bg-destructive/5 p-3 text-sm font-medium text-destructive" role="alert">
+        <p className="flex items-start gap-2 rounded-3xl border border-destructive/25 bg-destructive/5 p-4 text-sm font-medium text-destructive" role="alert">
           <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           We couldn't send your message. Please try again or call us directly.
         </p>
@@ -204,7 +259,7 @@ export function ContactForm() {
         ) : (
           <>
             <Send className="size-4" aria-hidden="true" />
-            Send Message
+            Send Request
           </>
         )}
       </button>

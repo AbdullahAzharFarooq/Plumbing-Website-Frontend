@@ -1,32 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, Quote } from "lucide-react";
+import { CheckCircle2, Home, Phone, ShieldCheck, Star, Users } from "lucide-react";
 
-import { CallCta } from "@/components/CallCta";
-import { PageHero } from "@/components/PageHero";
+import heroImage from "@/assets/hero-plumber.jpg";
 import { Stars } from "@/components/Stars";
-import { TrustBar } from "@/components/TrustBar";
-import { business, ratingSummary, testimonials } from "@/data/businessData";
+import { business, testimonials } from "@/data/businessData";
 import { btnOutline, btnPrimary } from "@/lib/ui";
 
 const title = `Customer Reviews — ${business.companyName}`;
 const description = `Read what homeowners across the ${business.region} say about working with ${business.companyName}.`;
 
-const trustReasons = [
+const featuredReviews = testimonials.slice(0, 3);
+
+const trustPoints = [
   {
-    title: "Licensed local plumbers",
-    body: "Our team is licensed, insured, and experienced in Toronto homes.",
+    title: "Clear Communication",
+    icon: Star,
   },
   {
-    title: "Straightforward pricing",
-    body: "You get honest recommendations and clear estimates before any work begins.",
+    title: "Quality Workmanship",
+    icon: ShieldCheck,
   },
   {
-    title: "Fast response",
-    body: "Same-day help for urgent problems and dependable scheduling for planned work.",
-  },
-  {
-    title: "Respectful service",
-    body: "We treat your home with care, using boot covers, drop cloths, and a tidy clean-up.",
+    title: "Respect for Your Home",
+    icon: Home,
   },
 ];
 
@@ -47,122 +43,130 @@ export const Route = createFileRoute("/reviews")({
 });
 
 function ReviewsPage() {
-  const featured = testimonials.find((item) => item.featured) ?? testimonials[0]!;
-  const others = testimonials.filter((item) => item !== featured);
-
   return (
     <>
-      <PageHero
-        eyebrow="Customer feedback"
-        title="What Our Customers Say"
-        copy="Two decades of local work, judged by the people who live with the results."
-      >
-        <div className="flex flex-wrap gap-3">
-          <a href={business.phoneHref} className={btnPrimary}>
-            <Phone className="size-4" aria-hidden="true" />
-            Call Now
-          </a>
-          <Link to="/contact" className={btnOutline}>
-            Contact Us
-          </Link>
-        </div>
-      </PageHero>
-
-      <TrustBar />
-
-      <section className="section bg-background">
-        <div className="shell grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
-          <div>
-            <p className="eyebrow">Rating summary</p>
-            <p className="mt-4 text-6xl font-extrabold tracking-tight text-navy">{ratingSummary.average}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <Stars rating={ratingSummary.average} />
-              <span className="text-sm font-medium text-muted-foreground">
-                Based on {ratingSummary.count} customer reviews
-              </span>
-            </div>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Homeowners across the {business.region} trust our team for honest estimates, reliable repairs, and
-              respectful service.
+      <section className="bg-background">
+        <div className="shell grid gap-12 py-16 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:py-20">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Customer Feedback</p>
+            <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl lg:text-[4.5rem] leading-[1.02]">
+              Trusted by Homeowners Across the GTA.
+            </h1>
+            <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
+              Two decades of local plumbing work, judged by the people who live with the results.
             </p>
+
+            <div className="mt-10 inline-flex items-center gap-4 rounded-full border border-border bg-white/90 px-5 py-3 shadow-soft backdrop-blur-sm">
+              <Stars rating={4.9} />
+              <div>
+                <p className="text-xl font-semibold text-navy">4.9 / 5</p>
+                <p className="text-sm text-muted-foreground">Based on customer experiences</p>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <a href={business.phoneHref} className={btnPrimary}>
+                <Phone className="size-4" aria-hidden="true" />
+                Call {business.phone}
+              </a>
+              <Link to="/contact" className={btnOutline}>
+                Request a Callback
+              </Link>
+            </div>
           </div>
 
-          <figure className="rounded-[2rem] bg-navy p-10 text-navy-foreground">
-            <Quote className="size-10 text-teal" aria-hidden="true" />
-            <blockquote className="mt-6 text-[1.375rem] leading-relaxed font-medium text-navy-foreground">
-              “{featured.quote}”
-            </blockquote>
-            <figcaption className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-navy-foreground/15 pt-6 text-sm">
-              <div>
-                <p className="font-semibold text-navy-foreground">{featured.name}</p>
-                <p className="mt-1 text-muted-foreground">
-                  {featured.service} · {featured.location}
-                </p>
-              </div>
-              <Stars rating={featured.rating} />
-            </figcaption>
-          </figure>
+          <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-soft">
+            <img
+              src={heroImage}
+              alt="Professional plumber in a warm residential setting"
+              width={1440}
+              height={960}
+              loading="eager"
+              decoding="async"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
-      <section className="section bg-surface">
-        <div className="shell">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="eyebrow">More reviews</p>
-              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">What homeowners are saying</h2>
-            </div>
+      <section className="bg-surface">
+        <div className="shell py-16">
+          <div className="max-w-2xl">
+            <p className="eyebrow">What Our Customers Say</p>
+            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
+              High-quality feedback from homeowners who value honest plumbing work.
+            </h2>
           </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {others.map((item) => (
-              <figure key={item.name} className="rounded-3xl border border-border bg-card p-6">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex h-9 min-w-[2.25rem] items-center justify-center rounded-full bg-teal/10 text-teal font-semibold">
-                    {item.rating}.0
-                  </span>
-                  <Stars rating={item.rating} />
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {featuredReviews.map((review) => (
+              <article
+                key={review.name}
+                className="rounded-[2rem] border border-border bg-white p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-lift"
+              >
+                <div className="flex items-center gap-2 text-teal">
+                  <Star className="size-4" aria-hidden="true" />
+                  <span className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">5.0</span>
                 </div>
-                <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  “{item.quote}”
+                <blockquote className="mt-5 text-lg leading-relaxed text-navy">
+                  “{review.quote}”
                 </blockquote>
-                <figcaption className="mt-5 text-sm">
-                  <span className="block font-semibold text-navy">{item.name}</span>
-                  <span className="text-muted-foreground">{item.service} · {item.location}</span>
-                </figcaption>
-              </figure>
+                <div className="mt-6 border-t border-border pt-5 text-sm text-muted-foreground">
+                  <p className="font-semibold text-navy">{review.name}</p>
+                  <p className="mt-1">{review.location}</p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.24em] text-teal">{review.service}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section bg-background">
-        <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-20">
-            <div>
-              <p className="eyebrow">Why trust us</p>
-              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">
-                Trusted local plumbing with no surprises
-              </h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                We work carefully, communicate clearly, and arrive on time with the right tools for the job.
-              </p>
-            </div>
-            <div className="grid gap-6">
-              {trustReasons.map((item) => (
-                <div key={item.title} className="rounded-3xl border border-border bg-card p-6">
-                  <h3 className="text-lg font-semibold text-navy">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+      <section className="bg-navy text-navy-foreground">
+        <div className="shell py-16">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow text-teal">Good Work Speaks for Itself.</p>
+            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy-foreground">
+              We focus on clear communication, quality workmanship, and treating every home with respect.
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            {trustPoints.map((point) => (
+              <div key={point.title} className="rounded-3xl border border-navy-foreground/10 bg-navy/10 p-6">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                  <point.icon className="size-5" aria-hidden="true" />
                 </div>
-              ))}
-            </div>
+                <p className="mt-4 text-lg font-semibold text-navy-foreground">{point.title}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <CallCta
-        heading="Need a plumber you can trust?"
-        copy={`Call ${business.phone} or send us a message for fast, local service.`}
-      />
+      <section className="bg-background">
+        <div className="shell py-16">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-20">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl font-extrabold sm:text-4xl text-navy">
+                Need a Plumber You Can Trust?
+              </h2>
+              <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
+                From urgent repairs to everyday plumbing problems, our local team is ready to help.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <a href={business.phoneHref} className={btnPrimary}>
+                <Phone className="size-4" aria-hidden="true" />
+                Call {business.phone}
+              </a>
+              <Link to="/contact" className={btnOutline}>
+                Request a Callback
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
