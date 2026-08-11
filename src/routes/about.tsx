@@ -1,34 +1,36 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone } from "lucide-react";
+import { Clock, Eye, Phone, ShieldCheck, Users } from "lucide-react";
 
 import aboutImage from "@/assets/about-team.jpg";
-import whyImage from "@/assets/why-craft.jpg";
 import { CallCta } from "@/components/CallCta";
 import { PageHero } from "@/components/PageHero";
 import { TrustBar } from "@/components/TrustBar";
-import { WhyChooseUs } from "@/components/WhyChooseUs";
-import { business } from "@/data/businessData";
+import { business, stats, whyChooseUs } from "@/data/businessData";
 import { btnOutline, btnPrimary } from "@/lib/ui";
 
 const title = `About ${business.companyName} — Local Plumbers Since ${business.foundedYear}`;
 const description = `Our story, values and team. ${business.companyName} has served homeowners across the ${business.region} since ${business.foundedYear}.`;
 
-const approachPoints = [
-  {
-    title: "Honest communication",
-    body: "We explain the problem, the options, and the cost before any work begins.",
-  },
+const values = [
   {
     title: "Quality workmanship",
-    body: "Every repair is completed with durable materials and high standards so it still holds.",
+    body: "Durable repairs completed with attention to detail and a commitment to lasting results.",
+    icon: ShieldCheck,
   },
   {
     title: "Reliable service",
-    body: "We arrive prepared, on time, and ready to get the job done with minimal disruption.",
+    body: "A local team that arrives prepared, communicates clearly, and respects your home.",
+    icon: Clock,
   },
   {
-    title: "Respect for your home",
-    body: "Boot covers, drop cloths, and a tidy workspace on every visit.",
+    title: "Transparent communication",
+    body: "We explain the issue, the work required, and the timeline before we begin.",
+    icon: Eye,
+  },
+  {
+    title: "Customer-first",
+    body: "Your questions are answered and the work is finished without surprises.",
+    icon: Users,
   },
 ];
 
@@ -59,7 +61,7 @@ function AboutPage() {
         <div className="flex flex-wrap gap-3">
           <a href={business.phoneHref} className={btnPrimary}>
             <Phone className="size-4" aria-hidden="true" />
-            Call Now
+            {business.phone}
           </a>
           <Link to="/contact" className={btnOutline}>
             Contact Us
@@ -70,62 +72,104 @@ function AboutPage() {
       <TrustBar />
 
       <section className="section bg-background">
-        <div className="shell grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
+        <div className="shell grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-20">
+          <div>
+            <p className="eyebrow">ABOUT US</p>
+            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">
+              A local plumbing team built around workmanship, clarity and homeowner trust.
+            </h2>
+            <p className="mt-6 max-w-2xl lede">
+              Northbridge Plumbing serves the Greater Toronto Area with reliable residential plumbing, honest communication, and repairs that last. We help homeowners solve the problem right the first time without over-selling or surprise upsells.
+            </p>
+          </div>
+
+          <div className="rounded-[2rem] border border-border bg-surface-soft p-8">
+            <dl className="grid gap-6">
+              {stats.map((stat) => (
+                <div key={stat.label} className="rounded-3xl bg-background p-6 shadow-soft">
+                  <dt className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                    {stat.label}
+                  </dt>
+                  <dd className="mt-3 text-3xl font-extrabold text-navy sm:text-4xl">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-surface">
+        <div className="shell grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-20">
           <div>
             <p className="eyebrow">Our story</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">
-              It started with one van and a simple standard.
+              A simple standard, grown through experience and local trust.
             </h2>
             <div className="mt-6 space-y-5 text-[1.0625rem] leading-relaxed text-muted-foreground">
               <p>
-                {business.companyName} began in {business.foundedYear} with a single van, a licence, and a
-                frustration: too many homeowners were being sold quick fixes that failed within the year. The plan
-                was straightforward — do the job properly, explain it honestly, and let the work bring the next
-                call.
+                Northbridge Plumbing began with a single van and one clear promise: fix the problem properly, explain the work, and leave the home cleaner than we found it.
               </p>
               <p>
-                Two decades later that's still how it runs. We've stayed deliberately small enough that the person
-                answering the phone knows the plumber knocking on your door, and experienced enough to handle
-                everything from a dripping faucet to a failed main line.
-              </p>
-              <p>
-                Most of our work now comes from repeat customers and their neighbours. That's the only marketing
-                metric we really watch.
+                Two decades later, the same local team still serves homeowners across the GTA. We focus on durable repairs, direct communication, and practical solutions that fit the job.
               </p>
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] bg-surface-soft">
+          <div className="overflow-hidden rounded-[2rem] bg-background">
             <img
               src={aboutImage}
-              alt={`${business.companyName} plumbers discussing a job in a residential utility room`}
+              alt="Northbridge Plumbing team discussing a residential plumbing job"
               width={1408}
               height={1056}
               loading="lazy"
               decoding="async"
-              className="aspect-[4/5] w-full object-cover"
+              className="aspect-[4/3] w-full object-cover"
             />
           </div>
         </div>
       </section>
 
-      <WhyChooseUs />
+      <section className="section bg-background">
+        <div className="shell">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
+            <div className="max-w-2xl">
+              <p className="eyebrow">Mission & values</p>
+              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">
+                What guides every visit to your home.
+              </h2>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2">
+              {values.map((item) => (
+                <div key={item.title} className="rounded-3xl border border-border bg-card p-6">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                    <item.icon className="size-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="section bg-surface">
         <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-            <div>
-              <p className="eyebrow">Our approach</p>
-              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">How we approach every job</h2>
-              <p className="lede mt-4">
-                Our work is built on clear communication, dependable repairs, and respect for your home.
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
+            <div className="max-w-2xl">
+              <p className="eyebrow">Why choose us</p>
+              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">
+                Trusted plumbing for local homeowners.
+              </h2>
+              <p className="mt-4 lede">
+                Our work is built around practical repairs, consistent communication, and respect for your home.
               </p>
             </div>
-            <div className="grid gap-6">
-              {approachPoints.map((point) => (
-                <div key={point.title} className="rounded-3xl border border-border bg-card p-6">
-                  <h3 className="text-lg font-semibold text-navy">{point.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{point.body}</p>
+            <div className="grid gap-5">
+              {whyChooseUs.map((item) => (
+                <div key={item.title} className="rounded-3xl border border-border bg-white p-6">
+                  <h3 className="text-lg font-semibold text-navy">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                 </div>
               ))}
             </div>
