@@ -46,25 +46,25 @@ function ReviewsPage() {
   return (
     <>
       <section className="bg-background">
-        <div className="shell grid gap-12 py-16 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:py-20">
-          <div className="max-w-2xl">
+        <div className="shell grid gap-8 py-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:py-14">
+          <div className="max-w-xl">
             <p className="eyebrow">Customer Feedback</p>
-            <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl lg:text-[4.5rem] leading-[1.02]">
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl leading-tight">
               Trusted by Homeowners Across the GTA.
             </h1>
-            <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
               Two decades of local plumbing work, judged by the people who live with the results.
             </p>
 
-            <div className="mt-10 inline-flex items-center gap-4 rounded-full border border-border bg-white/90 px-5 py-3 shadow-soft backdrop-blur-sm">
+            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-border bg-white/90 px-4 py-2 shadow-soft backdrop-blur-sm">
               <Stars rating={4.9} />
               <div>
-                <p className="text-xl font-semibold text-navy">4.9 / 5</p>
+                <p className="text-lg font-semibold text-navy">4.9 / 5</p>
                 <p className="text-sm text-muted-foreground">Based on customer experiences</p>
               </div>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}
@@ -75,7 +75,7 @@ function ReviewsPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-soft">
+          <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-soft h-[260px] sm:h-[320px] lg:h-[420px]">
             <img
               src={heroImage}
               alt="Professional plumber in a warm residential setting"
@@ -83,7 +83,7 @@ function ReviewsPage() {
               height={960}
               loading="eager"
               decoding="async"
-              className="aspect-[4/3] w-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
         </div>
