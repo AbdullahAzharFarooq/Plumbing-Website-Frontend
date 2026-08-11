@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin, Phone } from "lucide-react";
 
-import aboutImage from "@/assets/about-team.jpg";
-import heroImage from "@/assets/hero-plumber.jpg";
+import heroImage from "@/assets/svc-waterheater.jpg";
+import secondaryImage from "@/assets/svc-faucet.jpg";
 import { CallCta } from "@/components/CallCta";
-import { PageHero } from "@/components/PageHero";
 import { TrustBar } from "@/components/TrustBar";
 import { business, serviceAreas, trustPoints } from "@/data/businessData";
 import { btnOutline, btnPrimary } from "@/lib/ui";
@@ -92,30 +91,24 @@ function AboutPage() {
       <section className="section bg-surface">
         <div className="shell grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-20">
           <div>
-            <p className="eyebrow">OUR STORY</p>
+            <p className="eyebrow">WHO WE ARE</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
-              It started with one van and a simple standard.
+              A local plumbing company built on trust and quality.
             </h2>
             <div className="mt-8 space-y-6 text-[1.0625rem] leading-relaxed text-muted-foreground">
               <p>
-                Northbridge Plumbing began in {business.foundedYear} with a single van, a licence, and a frustration: too many homeowners were being sold quick fixes that failed within the year.
+                Northbridge Plumbing has served homeowners across the GTA since {business.foundedYear}. We keep our team small so every job delivers the care and attention a home deserves.
               </p>
               <p>
-                The plan was straightforward — do the job properly, explain it honestly, and let the work bring the next call.
-              </p>
-              <p>
-                Two decades later, that's still how it runs. We've stayed deliberately small enough that the person answering the phone knows the plumber knocking on your door, and experienced enough to handle everything from a dripping faucet to a failed main line.
-              </p>
-              <p>
-                Most of our work now comes from repeat customers and their neighbours. That's the only marketing metric we really watch.
+                Our work is designed to last: clear estimates, honest advice, and repairs that avoid the repeat visits other companies leave behind.
               </p>
             </div>
           </div>
 
           <div className="overflow-hidden rounded-[2rem] border border-border bg-background">
             <img
-              src={aboutImage}
-              alt="Northbridge plumber working inside a residential home"
+              src={secondaryImage}
+              alt="Plumber adjusting a faucet in a bright kitchen"
               width={1408}
               height={1056}
               loading="lazy"
@@ -129,9 +122,9 @@ function AboutPage() {
       <section className="section bg-background">
         <div className="shell">
           <div className="max-w-2xl">
-            <p className="eyebrow">OUR PHILOSOPHY</p>
+            <p className="eyebrow">OUR APPROACH</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
-              Good plumbing starts with good principles.
+              Simple process. Clear decisions. Reliable results.
             </h2>
           </div>
 
@@ -156,11 +149,8 @@ function AboutPage() {
           <div className="max-w-2xl">
             <p className="eyebrow">Why Homeowners Choose Northbridge</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
-              Professional plumbing doesn't need to feel complicated.
+              Dependability and respect with every call.
             </h2>
-            <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
-              We keep the process straightforward from the first conversation to the finished job.
-            </p>
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -181,10 +171,10 @@ function AboutPage() {
               PROUDLY LOCAL
             </div>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
-              Serving Homes Across the Greater Toronto Area
+              Serving homes across the Greater Toronto Area.
             </h2>
             <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
-              Northbridge Plumbing works with homeowners throughout the GTA, providing dependable residential plumbing with the same personal approach that has defined the company from the beginning.
+              From emergency repairs to planned upgrades, our crew brings the same dependable service to every neighbourhood we serve.
             </p>
           </div>
 
@@ -201,12 +191,12 @@ function AboutPage() {
       <section className="section bg-surface">
         <div className="shell grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-20">
           <div>
-            <p className="eyebrow">The people behind the work</p>
+            <p className="eyebrow">OUR TEAM</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl text-navy">
-              Experienced plumbers, straightforward advice, and people who take pride in the work they leave behind.
+              Skilled plumbers who treat your home with care.
             </h2>
             <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
-              Our team shows up on time, explains the work clearly, and leaves your home in the same condition it was before we arrived.
+              We focus on creating solutions that last, and we leave your home clean and ready for the next day.
             </p>
           </div>
 
