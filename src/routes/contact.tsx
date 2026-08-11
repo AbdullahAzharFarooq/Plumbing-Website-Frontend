@@ -50,16 +50,16 @@ function ContactPage() {
   return (
     <>
       <section className="bg-surface">
-        <div className="shell py-14 lg:py-16">
+        <div className="shell py-12 lg:py-14">
           <div className="max-w-2xl">
             <p className="eyebrow">GET IN TOUCH</p>
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
+            <h1 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
               Reliable Plumbing Starts With a Conversation.
             </h1>
-            <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
               Whether you have an urgent plumbing problem, need a repair, or simply want professional advice, our team is ready to help.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}
