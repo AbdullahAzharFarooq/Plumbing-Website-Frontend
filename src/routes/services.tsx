@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Check, Phone } from "lucide-react";
+import { Check, Phone } from "lucide-react";
 
+import heroImage from "@/assets/hero-plumber.jpg";
 import { CallCta } from "@/components/CallCta";
 import { FAQ } from "@/components/FAQ";
-import { PageHero } from "@/components/PageHero";
 import { TrustBar } from "@/components/TrustBar";
 import { business, faqs, services } from "@/data/businessData";
 import { btnOutline, btnPrimary } from "@/lib/ui";
@@ -39,90 +39,89 @@ const benefits = [
 function ServicesPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Our services"
-        title="Professional Plumbing Services for Every Part of Your Home"
-        copy="Professional solutions for everyday plumbing needs and unexpected problems — carried out by licensed plumbers who explain the work before starting it."
-      >
-        <div className="flex flex-wrap gap-3">
-          <a href={business.phoneHref} className={btnPrimary}>
-            <Phone className="size-4" aria-hidden="true" />
-            Call {business.phone}
-          </a>
-          <Link to="/contact" className={btnOutline}>
-            Request a callback
-          </Link>
-        </div>
-      </PageHero>
-
-      <TrustBar />
-
-      <section className="section bg-background">
-        <div className="shell">
-          <div className="flex flex-col gap-4 border-b border-border pb-8 md:flex-row md:items-end md:justify-between">
-            <h2 className="text-2xl font-extrabold sm:text-3xl">Service categories</h2>
-            <p className="max-w-md text-sm text-muted-foreground">
-              Jump straight to what you need. Every service below is available across the {business.region}.
-            </p>
-          </div>
-          <ul className="mt-8 grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => (
-              <li key={service.slug}>
-                <a
-                  href={`#${service.slug}`}
-                  className="group flex items-center justify-between gap-3 border-b border-border py-4 text-[0.9375rem] font-semibold text-navy transition-colors hover:text-primary"
-                >
-                  {service.name}
-                  <ArrowRight
-                    className="size-4 text-muted-foreground transition-transform duration-200 group-hover:translate-x-1 group-hover:text-primary"
-                    aria-hidden="true"
-                  />
+      <section className="bg-surface">
+        <div className="shell py-14 md:py-20">
+          <div className="grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-20">
+            <div className="max-w-2xl">
+              <p className="eyebrow">OUR SERVICES</p>
+              <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
+                Professional Plumbing Services for Every Part of Your Home
+              </h1>
+              <p className="lede mt-6">
+                From urgent plumbing problems to everyday repairs, our experienced team provides reliable
+                solutions with clear communication and quality workmanship.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <a href={business.phoneHref} className={btnPrimary}>
+                  <Phone className="size-4" aria-hidden="true" />
+                  Call {business.phone}
                 </a>
-              </li>
-            ))}
-          </ul>
+                <Link to="/contact" className={btnOutline}>
+                  Request a Callback
+                </Link>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-[2rem] bg-background">
+              <img
+                src={heroImage}
+                alt="Professional plumber inspecting a residential plumbing system"
+                width={1440}
+                height={960}
+                loading="eager"
+                decoding="async"
+                className="aspect-[4/3] w-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="bg-surface">
-        <div className="shell py-4 md:py-8">
+      <TrustBar />
+
+      <section className="bg-background">
+        <div className="shell">
           {services.map((service, index) => (
             <article
               key={service.slug}
-              id={service.slug}
-              className="grid scroll-mt-28 items-center gap-8 border-b border-border py-14 last:border-b-0 lg:grid-cols-2 lg:gap-16 lg:py-20"
+              className={`grid scroll-mt-28 items-center gap-10 border-t border-border py-14 last:border-b last:border-border last:pb-0 lg:grid-cols-2 lg:gap-16 lg:py-20 ${
+                index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+              }`}
             >
-              <div className={`overflow-hidden rounded-2xl bg-surface-soft ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                <img
-                  src={service.image}
-                  alt={service.imageAlt}
-                  width={1280}
-                  height={800}
-                  loading={index < 2 ? "eager" : "lazy"}
-                  decoding="async"
-                  className="aspect-16/10 size-full object-cover"
-                />
+              <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
+                <div className="overflow-hidden rounded-[1.75rem] bg-surface-soft">
+                  <img
+                    src={service.image}
+                    alt={service.imageAlt}
+                    width={1280}
+                    height={860}
+                    loading={index < 2 ? "eager" : "lazy"}
+                    decoding="async"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
               </div>
 
-              <div>
-                <p className="eyebrow">
-                  {String(index + 1).padStart(2, "0")}
-                  <span className="h-px w-6 bg-teal" aria-hidden="true" />
-                  Service
-                </p>
-                <h2 className="mt-4 text-2xl font-extrabold sm:text-3xl">{service.name}</h2>
-                <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
+              <div className={index % 2 === 1 ? "lg:col-start-1" : ""}>
+                <div className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-teal">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span className="text-navy">SERVICE</span>
+                </div>
+                <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">{service.name}</h2>
+                <p className="mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
-                <ul className="mt-6 space-y-2.5">
+                <ul className="mt-8 space-y-3">
                   {service.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-start gap-2.5 text-[0.9375rem] text-navy">
-                      <Check className="mt-1 size-4 shrink-0 text-teal" aria-hidden="true" />
-                      {benefit}
+                    <li key={benefit} className="flex gap-3 text-[0.96rem] text-navy">
+                      <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal/10 text-teal">
+                        ✓
+                      </span>
+                      <span className="leading-relaxed">{benefit}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 flex flex-wrap items-center gap-3">
+                <div className="mt-10 flex flex-wrap items-center gap-3">
                   <a href={business.phoneHref} className={btnPrimary}>
                     <Phone className="size-4" aria-hidden="true" />
                     Call Now
@@ -137,7 +136,7 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="section bg-background">
+      <section className="section bg-surface">
         <div className="shell">
           <div className="max-w-2xl">
             <p className="eyebrow">What's included</p>
@@ -154,8 +153,11 @@ function ServicesPage() {
         </div>
       </section>
 
-      <FAQ items={faqs.slice(0, 5)} className="bg-surface" />
-      <CallCta />
+      <FAQ items={faqs.slice(0, 5)} className="bg-background" />
+      <CallCta
+        heading="Need a Plumber? Let's Get It Sorted."
+        copy="Whether it's an urgent repair or something you've been meaning to fix, our experienced team is ready to help."
+      />
     </>
   );
 }

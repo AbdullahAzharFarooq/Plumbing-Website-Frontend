@@ -6,11 +6,31 @@ import whyImage from "@/assets/why-craft.jpg";
 import { CallCta } from "@/components/CallCta";
 import { PageHero } from "@/components/PageHero";
 import { TrustBar } from "@/components/TrustBar";
-import { business, stats, team, values, whyChooseUs } from "@/data/businessData";
+import { WhyChooseUs } from "@/components/WhyChooseUs";
+import { business } from "@/data/businessData";
 import { btnOutline, btnPrimary } from "@/lib/ui";
 
 const title = `About ${business.companyName} — Local Plumbers Since ${business.foundedYear}`;
 const description = `Our story, values and team. ${business.companyName} has served homeowners across the ${business.region} since ${business.foundedYear}.`;
+
+const approachPoints = [
+  {
+    title: "Honest communication",
+    body: "We explain the problem, the options, and the cost before any work begins.",
+  },
+  {
+    title: "Quality workmanship",
+    body: "Every repair is completed with durable materials and high standards so it still holds.",
+  },
+  {
+    title: "Reliable service",
+    body: "We arrive prepared, on time, and ready to get the job done with minimal disruption.",
+  },
+  {
+    title: "Respect for your home",
+    body: "Boot covers, drop cloths, and a tidy workspace on every visit.",
+  },
+];
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -39,7 +59,7 @@ function AboutPage() {
         <div className="flex flex-wrap gap-3">
           <a href={business.phoneHref} className={btnPrimary}>
             <Phone className="size-4" aria-hidden="true" />
-            {business.phone}
+            Call Now
           </a>
           <Link to="/contact" className={btnOutline}>
             Contact Us
@@ -75,7 +95,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-2xl bg-surface-soft">
+          <div className="overflow-hidden rounded-[2rem] bg-surface-soft">
             <img
               src={aboutImage}
               alt={`${business.companyName} plumbers discussing a job in a residential utility room`}
@@ -83,101 +103,40 @@ function AboutPage() {
               height={1056}
               loading="lazy"
               decoding="async"
-              className="aspect-4/5 size-full object-cover"
+              className="aspect-[4/5] w-full object-cover"
             />
           </div>
         </div>
       </section>
 
-      <section className="bg-navy text-navy-foreground">
-        <div className="shell py-14 md:py-16">
-          <h2 className="text-2xl font-extrabold text-navy-foreground sm:text-3xl">Experience, in numbers</h2>
-          <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="border-t border-navy-foreground/15 pt-5">
-                <dt className="sr-only">{stat.label}</dt>
-                <dd>
-                  <span className="block text-3xl font-extrabold text-navy-foreground sm:text-4xl">
-                    {stat.value}
-                  </span>
-                  <span className="mt-2 block text-sm text-navy-foreground/60">{stat.label}</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <WhyChooseUs />
 
       <section className="section bg-surface">
-        <div className="shell grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-          <div className="overflow-hidden rounded-2xl bg-surface-soft lg:order-2">
-            <img
-              src={whyImage}
-              alt="Careful pipe fitting work being completed by a licensed plumber"
-              width={1200}
-              height={1504}
-              loading="lazy"
-              decoding="async"
-              className="aspect-4/5 size-full object-cover"
-            />
-          </div>
-          <div>
-            <p className="eyebrow">What we stand for</p>
-            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">How we work in your home</h2>
-            <ol className="mt-8 divide-y divide-border border-y border-border">
-              {values.map((value, index) => (
-                <li key={value.title} className="flex gap-6 py-6">
-                  <span className="mt-1 font-mono text-sm font-semibold text-teal">0{index + 1}</span>
-                  <div>
-                    <h3 className="text-lg font-bold">{value.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.body}</p>
-                  </div>
-                </li>
+        <div className="shell">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+            <div>
+              <p className="eyebrow">Our approach</p>
+              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">How we approach every job</h2>
+              <p className="lede mt-4">
+                Our work is built on clear communication, dependable repairs, and respect for your home.
+              </p>
+            </div>
+            <div className="grid gap-6">
+              {approachPoints.map((point) => (
+                <div key={point.title} className="rounded-3xl border border-border bg-card p-6">
+                  <h3 className="text-lg font-semibold text-navy">{point.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{point.body}</p>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section bg-background">
-        <div className="shell">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Our team</p>
-            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">The people who show up</h2>
-            <p className="lede mt-4">
-              No subcontracted strangers. The same licensed team, job after job.
-            </p>
-          </div>
-          <ul className="mt-10 grid gap-8 sm:grid-cols-3">
-            {team.map((member) => (
-              <li key={member.name} className="border-t border-navy pt-5">
-                <h3 className="text-lg font-bold">{member.name}</h3>
-                <p className="mt-1 text-sm font-medium text-primary">{member.role}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{member.years}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="section bg-surface">
-        <div className="shell">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Trust</p>
-            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Why homeowners keep calling us back</h2>
-          </div>
-          <dl className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {whyChooseUs.map((item) => (
-              <div key={item.title} className="rounded-xl border border-border bg-card p-6">
-                <dt className="text-base font-bold text-navy">{item.title}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <CallCta heading="Want to talk to us first?" copy="Ask questions before booking anything. We're happy to explain." />
+      <CallCta
+        heading="Ready to talk to a licensed plumber?"
+        copy={`Call ${business.phone} or request service and our team will follow up promptly.`}
+      />
     </>
   );
 }

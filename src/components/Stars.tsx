@@ -11,7 +11,7 @@ export function Stars({ rating, className = "" }: { rating: number; className?: 
         <Star
           key={star}
           aria-hidden="true"
-          className={`size-4 ${star <= Math.round(rating) ? "fill-emergency text-emergency" : "text-border"}`}
+          className={`size-4 ${star <= Math.round(rating) ? "fill-teal text-teal" : "text-border"}`}
         />
       ))}
     </span>

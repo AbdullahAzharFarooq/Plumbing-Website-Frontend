@@ -4,11 +4,11 @@ import { useState } from "react";
 import { submitContactForm } from "@/services/contactService";
 import { btnPrimary } from "@/lib/ui";
 
-type Fields = { name: string; email: string; phone: string; message: string };
+type Fields = { name: string; email: string; phone: string; service: string; message: string };
 type Errors = Partial<Record<keyof Fields, string>>;
 type Status = "idle" | "submitting" | "success" | "error";
 
-const emptyFields: Fields = { name: "", email: "", phone: "", message: "" };
+const emptyFields: Fields = { name: "", email: "", phone: "", service: "", message: "" };
 
 function validate(fields: Fields): Errors {
   const errors: Errors = {};
@@ -45,6 +45,7 @@ export function ContactForm() {
         name: fields.name.trim(),
         email: fields.email.trim(),
         phone: fields.phone.trim(),
+        service: fields.service.trim(),
         message: fields.message.trim(),
       });
       setStatus("success");
@@ -148,6 +149,20 @@ export function ContactForm() {
             {errors.email}
           </p>
         )}
+      </div>
+
+      <div>
+        <label htmlFor="cf-service" className="text-sm font-semibold text-navy">
+          Service needed
+        </label>
+        <input
+          id="cf-service"
+          name="service"
+          value={fields.service}
+          onChange={update("service")}
+          className={fieldClass}
+          placeholder="Leak repair, water heater, faucet replacement..."
+        />
       </div>
 
       <div>
