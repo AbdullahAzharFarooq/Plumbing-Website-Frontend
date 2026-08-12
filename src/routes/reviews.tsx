@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Home, Phone, ShieldCheck, Star, Users } from "lucide-react";
 
-import heroImage from "@/assets/svc-faucet.jpg";
 import { Stars } from "@/components/Stars";
 import { business, testimonials } from "@/data/businessData";
 import { btnOutline, btnPrimary } from "@/lib/ui";
@@ -45,14 +44,14 @@ export const Route = createFileRoute("/reviews")({
 function ReviewsPage() {
   return (
     <>
-      <section className="bg-background">
-        <div className="shell grid gap-6 py-10 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-12">
-          <div className="max-w-lg">
-            <p className="eyebrow">Customer Feedback</p>
-            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl leading-tight">
+      <section className="bg-navy text-navy-foreground">
+        <div className="shell grid place-items-center py-20 text-center lg:py-24">
+          <div className="mx-auto max-w-2xl">
+            <p className="eyebrow text-teal">Customer Feedback</p>
+            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy-foreground sm:text-4xl leading-tight">
               Trusted by Homeowners Across the GTA.
             </h1>
-            <p className="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-base leading-relaxed text-navy-foreground/70">
               Two decades of local plumbing work, judged by the people who live with the results.
             </p>
 
@@ -64,7 +63,7 @@ function ReviewsPage() {
               </div>
             </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}
@@ -73,18 +72,6 @@ function ReviewsPage() {
                 Request a Callback
               </Link>
             </div>
-          </div>
-
-          <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-soft h-[220px] sm:h-[260px] lg:h-[320px]">
-            <img
-              src={heroImage}
-              alt="Professional plumber in a warm residential setting"
-              width={1440}
-              height={960}
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
           </div>
         </div>
       </section>

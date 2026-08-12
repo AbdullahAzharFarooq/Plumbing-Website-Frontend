@@ -3,7 +3,7 @@ export type ContactPayload = {
   name: string;
   email: string;
   phone: string;
-  service?: string;
+  service?: string; 
   message: string;
 };
 

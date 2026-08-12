@@ -49,17 +49,17 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <>
-      <section className="bg-surface">
-        <div className="shell py-12 lg:py-14">
-          <div className="max-w-2xl">
-            <p className="eyebrow">GET IN TOUCH</p>
-            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl leading-tight">
-              Reliable Plumbing Starts With a Conversation.
+      <section className="bg-navy text-navy-foreground">
+        <div className="shell grid items-center pt-20 pb-[calc(5rem+80px)] text-center lg:pt-24 lg:pb-[calc(6rem+80px)]">
+          <div className="mx-auto max-w-2xl">
+            <p className="eyebrow text-navy-foreground/85">GET IN TOUCH</p>
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl leading-tight text-navy-foreground">
+              Contact Us
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Whether you need an urgent repair, routine service, or simply have a question, our team is ready to help.
+            <p className="mt-4 mx-auto max-w-xl text-base leading-relaxed text-navy-foreground/80">
+              Have a plumbing question or need professional help? We're here to help.
             </p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}

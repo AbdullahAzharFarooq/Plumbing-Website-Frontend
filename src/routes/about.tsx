@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin, Phone } from "lucide-react";
 
-import heroImage from "@/assets/svc-waterheater.jpg";
 import secondaryImage from "@/assets/svc-faucet.jpg";
 import { CallCta } from "@/components/CallCta";
 import { TrustBar } from "@/components/TrustBar";
@@ -49,19 +48,19 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <>
-      <section className="bg-background">
-        <div className="shell grid gap-8 py-10 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:py-12">
-          <div className="max-w-xl">
-            <p className="eyebrow">ABOUT NORTHBRIDGE</p>
-            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl leading-tight">
+      <section className="bg-navy text-navy-foreground">
+        <div className="shell grid items-center pt-20 pb-[calc(5rem+25px)] text-center lg:pt-24 lg:pb-[calc(6rem+25px)]">
+          <div className="mx-auto max-w-3xl">
+            <p className="eyebrow text-teal">ABOUT NORTHBRIDGE</p>
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy-foreground sm:text-5xl leading-tight">
               Professional Plumbing
               <br />
               With a Personal Approach
             </h1>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 mx-auto max-w-2xl text-base leading-relaxed text-navy-foreground/70">
               A small, experienced local team looking after homes across the Greater Toronto Area since {business.foundedYear}.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-center">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}
@@ -70,18 +69,6 @@ function AboutPage() {
                 Contact Us
               </Link>
             </div>
-          </div>
-
-          <div className="overflow-hidden rounded-[2rem] border border-border bg-background shadow-soft h-[240px] sm:h-[280px] lg:h-[320px]">
-            <img
-              src={heroImage}
-              alt="Professional plumber working inside a residential home"
-              width={1440}
-              height={960}
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
           </div>
         </div>
       </section>
