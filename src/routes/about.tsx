@@ -202,7 +202,7 @@ function AboutPage() {
 
           <div className="overflow-hidden rounded-[2rem] border border-border bg-background">
             <img
-              src={aboutImage}
+              src={secondaryImage}
               alt="Northbridge Plumbing tradespeople working inside a residential home"
               width={1408}
               height={1056}
