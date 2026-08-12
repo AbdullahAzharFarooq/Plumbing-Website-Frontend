@@ -50,18 +50,18 @@ function AboutPage() {
   return (
     <>
       <section className="bg-background">
-        <div className="shell grid gap-12 py-14 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:py-20">
-          <div className="max-w-2xl">
+        <div className="shell grid gap-8 py-10 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:py-12">
+          <div className="max-w-xl">
             <p className="eyebrow">ABOUT NORTHBRIDGE</p>
-            <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl lg:text-[4.5rem] leading-[1.02]">
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl leading-tight">
               Professional Plumbing
               <br />
               With a Personal Approach
             </h1>
-            <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
               A small, experienced local team looking after homes across the Greater Toronto Area since {business.foundedYear}.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a href={business.phoneHref} className={btnPrimary}>
                 <Phone className="size-4" aria-hidden="true" />
                 Call {business.phone}
@@ -72,7 +72,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-border bg-background shadow-soft">
+          <div className="overflow-hidden rounded-[2rem] border border-border bg-background shadow-soft h-[240px] sm:h-[280px] lg:h-[320px]">
             <img
               src={heroImage}
               alt="Professional plumber working inside a residential home"
@@ -80,7 +80,7 @@ function AboutPage() {
               height={960}
               loading="eager"
               decoding="async"
-              className="aspect-[4/3] w-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
         </div>
